@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Layout from '@/components/Layout'
 function EventsPage() {
   return (
-    <div>EventsPage</div>
+    <Layout>EventsPage</Layout>
   )
 }
 
