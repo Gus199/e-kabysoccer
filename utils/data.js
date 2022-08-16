@@ -16,8 +16,8 @@ const data ={
       ],
       events: [
         {
-            name: 'Free iPhone',
-            slug: 'free-iphone',
+            name: 'Special Game',
+            slug: 'special-game',
             venue: 'North East Philadelphia',
             image: '/images/soc01.jpg',
             date: "June 09, 2021",

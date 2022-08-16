@@ -17,6 +17,8 @@ function EventPage() {
   const deleteEvent = (e) => {
     console.log("Delete");
   };
+
+ 
   return (
     <Layout title={event.name}>
       <div className={styles.event}>
@@ -37,7 +39,8 @@ function EventPage() {
         <h1>{event.name}</h1>
         {event.image && (
           <div className={styles.image}>
-            <Image src={event.image} width={960} height={600} />
+            {/* <Image src={event.image}  loader={myLoader} width={960} height={600} /> */}
+            <Image src={event.image}  width={960} height={600} />
           </div>
         )}
        <h3>Description:</h3>

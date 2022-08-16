@@ -9,10 +9,10 @@ function EventItem({event}) {
   return (
     <div className={styles.event}>
       <div className={styles.img}>
-          <a>
-              <img src={event.image} alt={event.name}  width={170} height={100}/>
+        
+              <Image src={event.image} alt={event.name}  width={170} height={100}/>
 
-          </a>
+       
       </div>
       <div className={styles.info}>
           <span>
