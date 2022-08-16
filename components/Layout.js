@@ -1,4 +1,6 @@
 import Head from "next/head"
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/router"
 import styles from '../styles/Layout.module.css'
 import Footer from "./Footer"
@@ -14,6 +16,7 @@ function Layout({title, keywords, description, children}) {
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
     </Head>
+    <ToastContainer position="bottom-center" limit={1} />
     <Header />
     {router.pathname === '/' && <Showcase />}
     <div className={styles.container}>

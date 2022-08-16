@@ -33,7 +33,11 @@
   .logo a {
     color: red;
   }
-  
+  .dropdown-link {
+    display: flex;
+    padding: 2px;
+    
+}
   @media (max-width: 768px) {
     .header {
       flex-direction: column;
