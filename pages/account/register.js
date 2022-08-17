@@ -1,85 +1,152 @@
-import { FaUser } from 'react-icons/fa'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { useState, useEffect, useContext } from 'react'
-import Link from 'next/link'
-import Layout from '@/components/Layout'
-// import AuthContext from '@/context/AuthContext'
-import styles from '@/styles/AuthForm.module.css'
+import { FaUser } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect, useContext } from "react";
+import Link from "next/link";
+import Layout from "@/components/Layout";
+import { getError } from "../../utils/error";
+
+import { signIn, useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
+import axios from "axios";
+
+import styles from "@/styles/AuthForm.module.css";
+
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const { data: session } = useSession();
 
-//   const { register, error } = useContext(AuthContext)
+  const router = useRouter();
+  const { redirect } = router.query;
 
-//   useEffect(() => error && toast.error(error))
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (password !== passwordConfirm) {
-      toast.error('Passwords do not match!')
-      return
+  useEffect(() => {
+    if (session?.user) {
+      router.push(redirect || '/');
     }
+  }, [router, session, redirect]);
 
-    register({ username, email, password })
-  }
+  const {
+    handleSubmit,
+    register,
+    getValues,
+    formState: { errors },
+  } = useForm();
+  
+  const submitHandler = async ({ name, email, password }) => {
+    try {
+      await axios.post('/api/auth/signup', {
+        name,
+        email,
+        password,
+      });
 
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+      if (result.error) {
+        toast.error(result.error);
+      }
+    } catch (err) {
+      toast.error(getError(err));
+    }
+  };
   return (
-    <Layout title='User Registration'>
+    <Layout title="User Registration">
       <div className={styles.auth}>
         <h1>
           <FaUser /> Register
         </h1>
         <ToastContainer />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(submitHandler)}>
           <div>
-            <label htmlFor='username'>Username</label>
-            <input
-              type='text'
-              id='username'
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            className="w-full"
+            id="name"
+            autoFocus
+            {...register('name', {
+              required: 'Please enter name',
+            })}
+          />
+          {errors.name && (
+            <div className="text-red-500">{errors.name.message}</div>
+          )}
           </div>
           <div>
-            <label htmlFor='email'>Email Address</label>
-            <input
-              type='email'
-              id='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <input
+            type="email"
+            {...register('email', {
+              required: 'Please enter email',
+              pattern: {
+                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+                message: 'Please enter valid email',
+              },
+            })}
+            className="w-full"
+            id="email"
+          ></input>
+           {errors.email && (
+            <div className="text-red-500">{errors.email.message}</div>
+          )}
           </div>
           <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              type='password'
-              id='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            {...register('password', {
+              required: 'Please enter password',
+              minLength: { value: 6, message: 'password is more than 5 chars' },
+            })}
+            className="w-full"
+            id="password"
+            autoFocus
+          ></input>
+          {errors.password && (
+            <div className="text-red-500 ">{errors.password.message}</div>
+          )}
           </div>
           <div>
-            <label htmlFor='passwordConfirm'>Confirm Password</label>
-            <input
-              type='password'
-              id='passwordConfirm'
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-            />
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            className="w-full"
+            type="password"
+            id="confirmPassword"
+            {...register('confirmPassword', {
+              required: 'Please enter confirm password',
+              validate: (value) => value === getValues('password'),
+              minLength: {
+                value: 6,
+                message: 'confirm password is more than 5 chars',
+              },
+            })}
+          />
+          {errors.confirmPassword && (
+            <div className="text-red-500 ">
+              {errors.confirmPassword.message}
+            </div>
+          )}
+          {errors.confirmPassword &&
+            errors.confirmPassword.type === 'validate' && (
+              <div className="text-red-500 ">Password do not match</div>
+            )}
           </div>
 
-          <input type='submit' value='Register' className='btn' />
+          <input type="submit" value="Register" className="btn" />
         </form>
 
         <p>
-          Already have an account? <Link href='/account/login'>Login</Link>
+          Already have an account? <Link href="/account/login">Login</Link>
         </p>
       </div>
     </Layout>
-  )
+  );
 }

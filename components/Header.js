@@ -1,27 +1,30 @@
 import Link from "next/link";
-import React, { useContext, useEffect, useState } from 'react';
-import { Store } from '../utils/Store';
-import {signOut, useSession } from 'next-auth/react';
-import {FaSignInAlt,FaSignOutAlt} from 'react-icons/fa'
+import React, { useContext } from "react";
+import { Store } from "../utils/Store";
+import { signOut, useSession } from "next-auth/react";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import styles from "@/styles/Header.module.css";
-import Cookies from 'js-cookie';
-import { Menu } from '@headlessui/react';
-import DropdownLink from './DropdownLink';
+import Cookies from "js-cookie";
+import { Menu } from "@headlessui/react";
+import DropdownLink from "./DropdownLink";
+
 
 export default function Header() {
   const { state, dispatch } = useContext(Store);
   const { status, data: session } = useSession();
 
   const logoutClickHandler = () => {
-    Cookies.remove('cart');
-    dispatch({ type: 'CART_RESET' });
-    signOut({ callbackUrl: '/login' });
+    Cookies.remove("cart");
+    dispatch({ type: "CART_RESET" });
+    signOut({ callbackUrl: "/account/login" });
   };
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
+      
         <Link href="/">
           <a>KabylyEvents</a>
+        
         </Link>
       </div>
 
@@ -38,15 +41,15 @@ export default function Header() {
             </Link>
           </li>
           <li>
-         
-          {status === 'loading' ? (
-                'Loading'
-              ) : session?.user ? (
-                <Menu as="div" className="relative inline-block">
+            {status === "loading" ? (
+              "Loading"
+            ) : session?.user ? (
+              <Menu as="div" className="relative inline-block">
                 <Menu.Button className="text-blue-600">
                   {session.user.name}
                 </Menu.Button>
-                <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
+                {/* <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg "> */}
+                 <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                   <Menu.Item>
                     <DropdownLink className="dropdown-link" href="/profile">
                       Profile
@@ -62,22 +65,25 @@ export default function Header() {
                   </Menu.Item>
                   <Menu.Item>
                     <a
-                      className="dropdown-link"
+                     className="btn-secondary btn-icon"
                       href="#"
                       onClick={logoutClickHandler}
                     >
+                       <FaSignOutAlt />
                       Logout
                     </a>
                   </Menu.Item>
                 </Menu.Items>
               </Menu>
-              ) : (
-                <Link href="/account/login">
-                  <a className="p-2">Login</a>
-                </Link>
-              )}
-         
-            
+            ) : (
+              <Link href="/account/login">
+                {/* <a className="p-2">Login</a> */}
+                <a className="btn-secondary btn-icon">
+                  <FaSignInAlt />
+                  Login
+                </a>
+              </Link>
+            )}
           </li>
         </ul>
       </nav>

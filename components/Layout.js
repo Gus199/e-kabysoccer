@@ -7,6 +7,7 @@ import Footer from "./Footer"
 import Header from "./Header"
 import Showcase from "./Showcase"
 
+
 function Layout({title, keywords, description, children}) {
   const router = useRouter()
   return (
@@ -18,6 +19,7 @@ function Layout({title, keywords, description, children}) {
     </Head>
     <ToastContainer position="bottom-center" limit={1} />
     <Header />
+
     {router.pathname === '/' && <Showcase />}
     <div className={styles.container}>
        {children} 
