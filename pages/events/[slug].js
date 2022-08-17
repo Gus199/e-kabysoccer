@@ -1,16 +1,25 @@
-/* eslint-disable jsx-a11y/alt-text */
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import React, { useContext } from 'react';
+import { Store } from '../../utils/Store';
 import Layout from "@/components/Layout";
 import { FaPencilAlt, FaTimes } from "react-icons/fa";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import data from "../../utils/data";
+import Event from '../../models/Event';
+import db from '../../utils/db';
 import Link from "next/link";
 import styles from "@/styles/Event.module.css";
 
-function EventPage() {
-  const { query } = useRouter();
-  const { slug } = query;
-  const event = data.events.find((x) => x.slug === slug);
+function EventPage(props) {
+  const { event } = props;
+  const { state, dispatch } = useContext(Store);
+  const router = useRouter();
+  if (!event) {
+    return <Layout title="Produt Not Found">Produt Not Found</Layout>;
+  }
+ 
+
   if (!event) {
     return <div>Produt Not Found</div>;
   }
@@ -58,3 +67,17 @@ function EventPage() {
 }
 
 export default EventPage;
+
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { slug } = params;
+
+  await db.connect();
+  const event = await Event.findOne({ slug }).lean();
+  await db.disconnect();
+  return {
+    props: {
+      event: event ? db.convertDocToObj(event) : null,
+    },
+  };
+}

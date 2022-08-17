@@ -1,32 +1,23 @@
-/* eslint-disable jsx-a11y/alt-text */
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/EventItem.module.css";
-// import data from "utils/data";
 
-function EventItem({event}) {
- 
+function EventItem({ event }) {
   return (
     <div className={styles.event}>
       <div className={styles.img}>
-        
-              <Image src={event.image} alt={event.name}  width={170} height={100}/>
-
-       
+        <Image src={event.image} alt={event.name} width={170} height={100} />
       </div>
       <div className={styles.info}>
-          <span>
-              {event.date} at {event.time}
-          </span>
-          <h3>{event.name}</h3>
+        <span>
+          {event.date} at {event.time}
+        </span>
+        <h3>{event.name}</h3>
       </div>
       <div className={styles.link}>
-          <Link href={`/events/${event.slug}`}>
-              <a className="btn">
-              Details
-              </a>
-          </Link>
-
+        <Link href={`/events/${event.slug}`}>
+          <a className="btn">Details</a>
+        </Link>
       </div>
     </div>
   );
