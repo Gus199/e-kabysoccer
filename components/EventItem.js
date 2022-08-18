@@ -3,7 +3,10 @@ import Image from "next/image";
 import styles from "@/styles/EventItem.module.css";
 
 function EventItem({ event }) {
-  return (
+
+  // const { event } = props;
+ 
+  return (<>
     <div className={styles.event}>
       <div className={styles.img}>
         <Image src={event.image} alt={event.name} width={170} height={100} />
@@ -20,6 +23,8 @@ function EventItem({ event }) {
         </Link>
       </div>
     </div>
+   
+    </>
   );
 }
 

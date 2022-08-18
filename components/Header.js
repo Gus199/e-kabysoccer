@@ -5,9 +5,6 @@ import { signOut, useSession } from "next-auth/react";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import styles from "@/styles/Header.module.css";
 import Cookies from "js-cookie";
-import { Menu } from "@headlessui/react";
-import DropdownLink from "./DropdownLink";
-
 
 export default function Header() {
   const { state, dispatch } = useContext(Store);
@@ -21,10 +18,8 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-      
         <Link href="/">
           <a>KabylyEvents</a>
-        
         </Link>
       </div>
 
@@ -44,40 +39,25 @@ export default function Header() {
             {status === "loading" ? (
               "Loading"
             ) : session?.user ? (
-              <Menu as="div" className="relative inline-block">
-                <Menu.Button className="text-blue-600">
-                  {session.user.name}
-                </Menu.Button>
-                {/* <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg "> */}
-                 <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
-                  <Menu.Item>
-                    <DropdownLink className="dropdown-link" href="/profile">
-                      Profile
-                    </DropdownLink>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <DropdownLink
-                      className="dropdown-link"
-                      href="/order-history"
-                    >
-                      Order History
-                    </DropdownLink>
-                  </Menu.Item>
-                  <Menu.Item>
+              <>
+                <ul>
+                  <li>
+                    <a> {session.user.name} </a>
+                  </li>
+                  <li>
                     <a
-                     className="btn-secondary btn-icon"
+                      className="btn-secondary btn-icon"
                       href="#"
                       onClick={logoutClickHandler}
                     >
-                       <FaSignOutAlt />
+                      <FaSignOutAlt />
                       Logout
                     </a>
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
+                  </li>
+                </ul>
+              </>
             ) : (
               <Link href="/account/login">
-                {/* <a className="p-2">Login</a> */}
                 <a className="btn-secondary btn-icon">
                   <FaSignInAlt />
                   Login

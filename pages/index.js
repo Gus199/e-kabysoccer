@@ -1,30 +1,17 @@
 import Layout from "@/components/Layout";
-import Event from '../models/Event';
-import db from '../utils/db';
-import { Store } from '../utils/Store';
+import Event from "../models/Event";
+import db from "../utils/db";
+import { Store } from "../utils/Store";
 import EventItem from "@/components/EventItem";
 import Link from "next/link";
+import { useContext } from "react";
 
-import axios from 'axios';
-import { useContext } from 'react';
-import { toast } from 'react-toastify';
+
 
 export default function Home({ events }) {
+  console.log(events.address);
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
-
-  // const addToCartHandler = async (event) => {
-  //   const existItem = cart.cartItems.find((x) => x.slug === event.slug);
-  //   const quantity = existItem ? existItem.quantity + 1 : 1;
-  //   const { data } = await axios.get(`/api/events/${event._id}`);
-
-  //   if (data.countInStock < quantity) {
-  //     return toast.error('Sorry. Product is out of stock');
-  //   }
-  //   dispatch({ type: 'CART_ADD_ITEM', payload: { ...event, quantity } });
-
-  //   toast.success('Product added to the cart');
-  // };
 
   return (
     <Layout title="Kabyle Soccer Game">
@@ -40,7 +27,9 @@ export default function Home({ events }) {
           </Link>
         )}
       </div>
+     
     </Layout>
+    
   );
 }
 

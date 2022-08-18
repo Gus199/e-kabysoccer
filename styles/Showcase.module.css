@@ -4,7 +4,7 @@
     height: 300px;
     width: 100%;
     background: #000 url('/images/soc05.jpg') no-repeat center center;
-    color: #fff;
+    color:#fdbe00;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@
     justify-content: center;
     text-align: center;
   }
-  
+
   .showcase::after {
     content: '';
     position: absolute;
@@ -27,7 +27,8 @@
     z-index: 20;
   }
   
-  .showcase h1 {
+  .showcase h1 h2 {
+
     font-size: 40px;
     margin-bottom: 0;
   }

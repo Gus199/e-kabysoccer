@@ -10,6 +10,7 @@ import Event from '../../models/Event';
 import db from '../../utils/db';
 import Link from "next/link";
 import styles from "@/styles/Event.module.css";
+import EventMap from '../../components/EventMap'
 
 function EventPage(props) {
   const { event } = props;
@@ -56,6 +57,7 @@ function EventPage(props) {
        <p>{event.description}</p>
        <h3>Venue:{event.venue}</h3>
        <p>{event.address}</p>
+       <EventMap event={event} />
        <Link href='/events'>
          <a className={styles.back}>
           {'<'} Go Back
