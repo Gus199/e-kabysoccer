@@ -11,6 +11,7 @@ import db from '../../utils/db';
 import Link from "next/link";
 import styles from "@/styles/Event.module.css";
 import EventMap from '../../components/EventMap'
+import Map from '../../components/Map'
 
 function EventPage(props) {
   const { event } = props;
@@ -31,6 +32,7 @@ function EventPage(props) {
  
   return (
     <Layout title={event.name}>
+  
       <div className={styles.event}>
         <div className={styles.controls}>
           <Link href={`/events/edit/${event.slug}`}>
@@ -53,10 +55,12 @@ function EventPage(props) {
             <Image src={event.image}  width={960} height={600} />
           </div>
         )}
+        <Map />
        <h3>Description:</h3>
        <p>{event.description}</p>
        <h3>Venue:{event.venue}</h3>
        <p>{event.address}</p>
+       
        <EventMap event={event} />
        <Link href='/events'>
          <a className={styles.back}>

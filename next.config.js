@@ -10,12 +10,7 @@
 module.exports = {
   experimental: {
     images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'localhost:3000',
-        },
-      ],
+      domains: ['localhost:3000'],
     },
   },
 }
