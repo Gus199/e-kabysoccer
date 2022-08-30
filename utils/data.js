@@ -30,8 +30,8 @@ const data ={
             description: "There are many events in the international calendar for football (soccer), and also significant events in national and regional football competitions",
         },
         {
-            name: 'iPhone 13',
-            slug: 'iphone-13',
+            name: 'south vs northeast',
+            slug: 'south-vs-northeast',
             venue: 'North East Philadelphia',
             image: '/images/soc02.jpg',
             date: "June 09, 2021",
@@ -43,8 +43,8 @@ const data ={
             description: "There are many events in the international calendar for football (soccer), and also significant events in national and regional football competitions",
         },
         {
-            name: 'iPad Pro',
-            slug: 'ipad-pro',
+            name: 'Pro Game',
+            slug: 'pro-game',
             venue: 'North East Philadelphia',
             image: '/images/soc03.jpg',
             date: "June 09, 2021",
@@ -56,8 +56,8 @@ const data ={
             description: "There are many events in the international calendar for football (soccer), and also significant events in national and regional football competitions",
         },
         {
-            name: 'iPad Air',
-            slug: 'ipad-air',
+            name: 'Soccer League',
+            slug: 'soccer-league',
             venue: 'North East Philadelphia',
             image: '/images/soc04.jpg',
             date: "June 09, 2021",
@@ -69,8 +69,8 @@ const data ={
             description: 'Featuring deep cuts, party anthems and remixes nostalgic songs from two of the best decades of music with the very best music from the 90 '
         },
         {
-            name: 'Macbook Pro',
-            slug: 'macbook-pro1',
+            name: 'Pro-Soccer League',
+            slug: 'pro-soccer-league',
             venue: 'North East Philadelphia',
             image: '/images/soc05.jpg',
             date: "June 09, 2021",
@@ -82,13 +82,13 @@ const data ={
             description: "There are many events in the international calendar for football (soccer), and also significant events in national and regional football competitions",
         },
         {
-            name: 'Macbook Pro',
-            slug: 'macbook-pro',
+            name: 'Summer League',
+            slug: 'summer-league',
             venue: 'North East Philadelphia',
             image: '/images/soc06.jpg',
             date: "June 09, 2021",
            time: "10:00 PM EST",
-            address: '70 W 115th St New York, New York(NY),10026',
+            address: '235 S 33rd St, Philadelphia, PA 19104',
             rating: 5,
             numReviews: 11,
           

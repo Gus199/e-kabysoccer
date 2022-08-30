@@ -56,7 +56,7 @@ function EventPage(props) {
         {event.image && (
           <div className={styles.image}>
             {/* <Image src={event.image}  loader={myLoader} width={960} height={600} /> */}
-            <Image src={event.image}  width={960} height={600} />
+            <Image src={event.image}  width={960} height={600}  alt={event.name}/>
           </div>
         )}
         {/* <Map  event={event}/> */}

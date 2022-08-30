@@ -22,7 +22,7 @@ export default function Home({ events }) {
              
             {event.name}
           </EventItem>
-            <EventMap  event={event} key={event.slug}/>
+            {/* <EventMap  event={event} key={event.slug}/> */}
             </>
         ))}
         {events.length > 0 && (

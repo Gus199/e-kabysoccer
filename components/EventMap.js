@@ -50,7 +50,7 @@ export default function EventMap({ event }) {
       
     >
       <div className={styles.mapit} key={event.id} latitude={lat} longitude={lng} >
-        {/* <Image src='/images/pin.svg' width={30} height={30} /> */}
+        
         here at
       </div>
     </Map>

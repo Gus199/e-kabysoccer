@@ -1,16 +1,16 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-//   swcMinify: true,
-// }
-
-// module.exports = nextConfig
-
-
-module.exports = {
-  experimental: {
-    images: {
-      domains: ['localhost:3000'],
-    },
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
 }
+
+module.exports = nextConfig
+
+
+// module.exports = {
+//   experimental: {
+//     images: {
+//       domains: ['localhost:3000'],
+//     },
+//   },
+// }
