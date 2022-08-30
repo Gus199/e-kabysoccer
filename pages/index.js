@@ -5,6 +5,7 @@ import { Store } from "../utils/Store";
 import EventItem from "@/components/EventItem";
 import Link from "next/link";
 import { useContext } from "react";
+import EventMap from "@/components/EventMap";
 
 
 
@@ -16,10 +17,13 @@ export default function Home({ events }) {
   return (
     <Layout title="Kabyle Soccer Game">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {events.map((event) => (
+        {events.map((event) => (<>
           <EventItem event={event} key={event.slug}>
+             
             {event.name}
           </EventItem>
+            <EventMap  event={event} key={event.slug}/>
+            </>
         ))}
         {events.length > 0 && (
           <Link href="/events">
@@ -27,7 +31,7 @@ export default function Home({ events }) {
           </Link>
         )}
       </div>
-     
+ 
     </Layout>
     
   );

@@ -1,20 +1,22 @@
-// import Image from 'next/image'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import ReactMapGl, { Marker } from 'react-map-gl'
+import Map, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Geocode from 'react-geocode'
+import styles from "@/styles/Map.module.css";
 
-export default function EventMap(props) {
-    const { event } = props;
+export default function EventMap({ event }) {
+  
   const [lat, setLat] = useState(null)
   const [lng, setLng] = useState(null)
   const [loading, setLoading] = useState(true)
   const [viewport, setViewport] = useState({
-    latitude: 40.712772,
-    longitude: -73.935242,
-    width: '100%',
-    height: '500px',
-    zoom: 12,
+    // latitude: 40.712772,
+    // longitude: -73.935242,
+    width:"100vw" ,
+    height:"100vh",
+    zoom: 14,
+  
   })
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function EventMap(props) {
         const { lat, lng } = response.results[0].geometry.location
         setLat(lat)
         setLng(lng)
-        setViewport({ ...viewport, latitude: lat, longitude: lng })
+        setViewport({ ...viewport, latitude: lat, longitude: lng, })
         setLoading(false)
       },
       (error) => {
@@ -38,32 +40,20 @@ export default function EventMap(props) {
   if (loading) return false
 
   return (
-
-    <ReactMapGl
+    <Map  
       {...viewport}
-      mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+      width="100vw" 
+      height="100vh"
+      // mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+      mapStyle='mapbox://styles/amar199/cl7flmtiy000514l2s2fm1t4n'
       onViewportChange={(vp) => setViewport(vp)}
+      
     >
-      <Marker key={event.id} latitude={lat} longitude={lng}>
+      <div className={styles.mapit} key={event.id} latitude={lat} longitude={lng} >
         {/* <Image src='/images/pin.svg' width={30} height={30} /> */}
-        Hello
-      </Marker>
-    </ReactMapGl>
-
+        here at
+      </div>
+    </Map>
   )
 }
-
-export async function getServerSideProps(context) {
-    const { params } = context;
-    const { slug } = params;
-  
-    await db.connect();
-    const event = await Event.findOne({ slug }).lean();
-    await db.disconnect();
-    return {
-      props: {
-        event: event ? db.convertDocToObj(event) : null,
-      },
-    };
-  }
-  
+{/* <div ></div> */}

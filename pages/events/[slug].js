@@ -30,9 +30,13 @@ function EventPage(props) {
   };
 
  
-  return (
+  return (   
+   
     <Layout title={event.name}>
-  
+    
+      <EventMap event={event} />
+    
+ 
       <div className={styles.event}>
         <div className={styles.controls}>
           <Link href={`/events/edit/${event.slug}`}>
@@ -55,19 +59,22 @@ function EventPage(props) {
             <Image src={event.image}  width={960} height={600} />
           </div>
         )}
-        <Map />
+        {/* <Map  event={event}/> */}
+      
        <h3>Description:</h3>
        <p>{event.description}</p>
        <h3>Venue:{event.venue}</h3>
        <p>{event.address}</p>
        
-       <EventMap event={event} />
+       
        <Link href='/events'>
          <a className={styles.back}>
           {'<'} Go Back
          </a>
        </Link>
+     
       </div>
+
     </Layout>
   );
 }

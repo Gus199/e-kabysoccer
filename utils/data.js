@@ -22,7 +22,8 @@ const data ={
             image: '/images/soc01.jpg',
             date: "June 09, 2021",
            time: "10:00 PM EST",
-            address: '919 3rd Ave New York, New York(NY), 10022',
+            // address: '919 3rd Ave New York, New York(NY), 10022',
+            address : "70 W 115th St New York, New York(NY),10026",
             rating: 4.8,
             numReviews: 8,
             countInStock: 20,
@@ -35,7 +36,7 @@ const data ={
             image: '/images/soc02.jpg',
             date: "June 09, 2021",
            time: "10:00 PM EST",
-            address: '919 3rd Ave New York, New York(NY), 10022',
+            address: '70 W 115th St New York, New York(NY),10026',
             rating: 4.9,
             numReviews: 17,
         
@@ -48,7 +49,7 @@ const data ={
             image: '/images/soc03.jpg',
             date: "June 09, 2021",
            time: "10:00 PM EST",
-            address: '919 3rd Ave New York, New York(NY), 10022',
+            address: '70 W 115th St New York, New York(NY),10026',
             rating: 4.4,
             numReviews: 5,
          
@@ -61,7 +62,7 @@ const data ={
             image: '/images/soc04.jpg',
             date: "June 09, 2021",
            time: "10:00 PM EST",
-            address: '919 3rd Ave New York, New York(NY), 10022',
+            address: '70 W 115th St New York, New York(NY),10026',
             rating: 4.3,
             numReviews: 6,
             
@@ -74,7 +75,7 @@ const data ={
             image: '/images/soc05.jpg',
             date: "June 09, 2021",
            time: "10:00 PM EST",
-            address: '919 3rd Ave New York, New York(NY), 10022',
+            address: '70 W 115th St New York, New York(NY),10026',
             rating: 5,
             numReviews: 10,
             
@@ -87,7 +88,7 @@ const data ={
             image: '/images/soc06.jpg',
             date: "June 09, 2021",
            time: "10:00 PM EST",
-            address: '919 3rd Ave New York, New York(NY), 10022',
+            address: '70 W 115th St New York, New York(NY),10026',
             rating: 5,
             numReviews: 11,
           

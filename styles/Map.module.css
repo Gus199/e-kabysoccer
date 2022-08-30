@@ -1,15 +1,12 @@
-.sidebar {
-    background-color: rgba(35, 55, 75, 0.9);
-    color: #fff;
-    padding: 6px 12px;
-    font-family: monospace;
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 12px;
-    border-radius: 4px;
-    }
-    .map {
-      height: 400px;
-      }
+.mapit {
+  height: 300px;
+  width: 100%;
+  /* background: #000 url('/images/soc05.jpg') no-repeat center center; */
+  color:#fdbe00;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

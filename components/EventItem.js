@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "@/styles/EventItem.module.css";
 
 function EventItem({ event }) {
+  // console.log(event)
 
   // const { event } = props;
  
